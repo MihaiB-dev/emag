@@ -1,6 +1,6 @@
-import db from '../../models/index.js';
 import postType from '../types/postType.js';
 import postInputType from '../types/postInputType.js';
+import { createPost } from '../../core/services/createPostService.js';
 
 const createPostMutationResolver = async (_, { post }, context) => {
     const isAuthorized = !!context.user_id
@@ -9,14 +9,9 @@ const createPostMutationResolver = async (_, { post }, context) => {
         return false;
     }
     
-    const createdPost = await db.Post.create({
-       title: post.title,
-       body: post.body,
-       userId: context.user_id,
-    });
+    const createdPost = await createPost(post, context);
 
     return createdPost;
-    
 }
 
 const createPostMutation = {

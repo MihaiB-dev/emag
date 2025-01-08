@@ -4,8 +4,14 @@ import productType from './productType.js';
 const producerType = new GraphQLInputObjectType({
     name: 'Producer',
     fields: {
-        name: { type: GraphQLString },
-        password: { type: GraphQLString },
+        user: { 
+            type: userType,
+            resolve: async (producer) => {
+                const user = await producer.getuser();
+
+                return user;
+            }
+        },
 
         products: { 
                     type: new GraphQLList(productType),

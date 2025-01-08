@@ -43,7 +43,7 @@ app.all(
         schema: schema,
         context: (req) => {
             return {
-                user_id: req.raw.user_id, //next question is why raw?
+                user_id: req.raw.user_id,
             }
         }
     })

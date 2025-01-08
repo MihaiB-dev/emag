@@ -1,5 +1,6 @@
-import {GraphQLObjectType, GraphQLInt, GraphQLString} from 'graphql'
+import {GraphQLObjectType, GraphQLInt, GraphQLString, GraphQLList} from 'graphql'
 import userType from './userType.js';
+import tagType from './tagType.js';
 
 const postType = new GraphQLObjectType({
     name: 'Post',
@@ -17,6 +18,14 @@ const postType = new GraphQLObjectType({
                 return user;
             }
         },
+        tags: {
+            type: new GraphQLList(tagType),
+            resolve: async (post) => {
+                const tags = await post.getTags();
+
+                return tags;
+            }
+        }
     }
 });
 

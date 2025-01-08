@@ -27,6 +27,15 @@ const productType = new GraphQLObjectType({
                 return messages;
             }
         },
+        
+        tag: {
+            type: tagType,
+            resolve: async (product) => {
+                const tag = await product.getTag();
+
+                return tag;
+            }
+        }
     }
 });
 

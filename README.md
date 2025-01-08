@@ -1,1 +1,1 @@
-# emag
+# Node.js and GraphQL Unibuc 2024

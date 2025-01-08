@@ -9,6 +9,7 @@ const queryType = new GraphQLObjectType({
         user: userQuery,
         users: usersQuery,
         post: postQuery,
+
     },
 });
 
