@@ -1,5 +1,7 @@
 import {GraphQLInputObjectType, GraphQLObjectType, GraphQLString} from 'graphql'
 import productType from './productType.js';
+import userType from './userType.js';
+import {GraphQLList} from 'graphql';
 
 const producerType = new GraphQLInputObjectType({
     name: 'Producer',

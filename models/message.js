@@ -2,7 +2,7 @@
 import {
   Model
 } from 'sequelize';
-import product from './product';
+
 export default (sequelize, DataTypes) => {
 
     class Message extends Model {
@@ -16,7 +16,7 @@ export default (sequelize, DataTypes) => {
         title: DataTypes.STRING,
         description: DataTypes.STRING,
         reviewStars: DataTypes.FLOAT,
-        date: DataTypes.STRING,
+        date: DataTypes.DATE,
         userId: DataTypes.INTEGER,
         productId: DataTypes.INTEGER
     }, {

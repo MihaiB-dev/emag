@@ -1,5 +1,10 @@
 import {GraphQLInputObjectType, GraphQLObjectType, GraphQLString} from 'graphql'
 import productType from './productType.js';
+import userType from './userType.js';
+import cartType from './cartType.js';
+import orderType from './orderType.js';
+import {GraphQLList} from 'graphql';
+
 
 const consumerType = new GraphQLInputObjectType({
     name: 'Consumer',

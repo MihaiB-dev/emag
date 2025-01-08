@@ -1,3 +1,8 @@
+import {GraphQLObjectType, GraphQLInt, GraphQLString} from 'graphql'
+import {GraphQLList} from 'graphql';
+import userType from './userType.js';
+import productType from './productType.js';
+
 const cartType = new GraphQLObjectType({
     name: 'Cart',
     fields: {

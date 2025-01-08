@@ -9,8 +9,8 @@ export default (sequelize, DataTypes) => {
     }
   }
   CartProduct.init({
-    CartId: DataTypes.INTEGER,
-    ProductId: DataTypes.INTEGER,
+    cartId: DataTypes.INTEGER,
+    productId: DataTypes.INTEGER,
     quantity: DataTypes.INTEGER,
 
   }, {
