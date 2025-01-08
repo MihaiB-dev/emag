@@ -155,13 +155,20 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.dropTable('Messages');
-    await queryInterface.dropTable('Products');
-    await queryInterface.dropTable('Producers');
-    await queryInterface.dropTable('Carts');
-    await queryInterface.dropTable('CartProducts');
-    await queryInterface.dropTable('Orders');
-    await queryInterface.dropTable('OrderProducts');
     await queryInterface.dropTable('Consumers');
+    await queryInterface.dropTable('OrderProducts');
+    await queryInterface.dropTable('Orders');
+    await queryInterface.dropTable('CartProducts');
+    await queryInterface.dropTable('Carts');
+    await queryInterface.dropTable('Producers');
+    await queryInterface.dropTable('Products');
+    await queryInterface.dropTable('Messages');
+    
+    
+    
+    
+    
+    
+    
   }
 };
