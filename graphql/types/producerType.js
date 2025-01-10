@@ -9,19 +9,11 @@ const producerType = new GraphQLObjectType({
         user: { 
             type: userType,
             resolve: async (producer) => {
-                const user = await producer.getuser();
+                const user = await producer.getUser();
 
                 return user;
             }
         },
-
-        // products: { 
-        //             type: new GraphQLList(productType),
-        //             resolve: async (producer) => {
-        //                 const products = await producer.getProducts();
-        //                 return products;
-        //             }
-        //         }
     }
 });
 

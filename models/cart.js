@@ -23,6 +23,7 @@ export default (sequelize, DataTypes) => {
         userId: DataTypes.INTEGER,
         consumerId: DataTypes.INTEGER,
         totalPrice: DataTypes.INTEGER,
+        
     }, {
         sequelize,
         modelName: 'Cart',
