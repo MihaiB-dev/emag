@@ -14,14 +14,6 @@ const producerType = new GraphQLObjectType({
                 return user;
             }
         },
-
-        // products: { 
-        //             type: new GraphQLList(productType),
-        //             resolve: async (producer) => {
-        //                 const products = await producer.getProducts();
-        //                 return products;
-        //             }
-        //         }
     }
 });
 
