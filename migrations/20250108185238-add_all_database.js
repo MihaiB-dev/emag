@@ -13,7 +13,6 @@ module.exports = {
       title: {type: Sequelize.STRING},
       description: {type: Sequelize.STRING},
       reviewStars: {type: Sequelize.FLOAT},
-      date: {type: Sequelize.DATE},
       userId: {type: Sequelize.INTEGER},
       productId: {type: Sequelize.INTEGER},
       createdAt: {allowNull: false,type: Sequelize.DATE},

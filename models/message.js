@@ -16,7 +16,6 @@ export default (sequelize, DataTypes) => {
         title: DataTypes.STRING,
         description: DataTypes.STRING,
         reviewStars: DataTypes.FLOAT,
-        date: DataTypes.DATE,
         userId: DataTypes.INTEGER,
         productId: DataTypes.INTEGER
     }, {

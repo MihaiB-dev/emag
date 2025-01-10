@@ -7,6 +7,9 @@ import createPostMutation from '../mutations/createPostMutation.js';
 import createConsumerMutation from '../mutations/createConsumerMutation.js';
 import createProducerMutation from '../mutations/createProducerMutation.js';
 import createProductMutation from '../mutations/createProductMutation.js';
+import createMessageMutation from '../mutations/createMessageMutation.js';
+
+import { createMessage } from '../../core/services/createMessageService.js';
 // Define the Query type
 const queryType = new graphql.GraphQLObjectType({
     name: "Mutation",
@@ -17,6 +20,9 @@ const queryType = new graphql.GraphQLObjectType({
         login: loginMutation,
         createPost: createPostMutation,
         createConsumer: createConsumerMutation,
+        createProducer: createProducerMutation,
+        createProduct: createProductMutation,
+        createMessage: createMessageMutation
     }
 });
 
