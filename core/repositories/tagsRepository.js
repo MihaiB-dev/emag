@@ -20,3 +20,21 @@ export const findOrCreateTags = async (tags) => {
 
     return Promise.all(tagsPromises);
 }
+
+export const findOrCreateTag = async (tag) => {
+    const foundTag = await db.Tag.findOne({
+        where: {
+            name: tag,
+        }
+    });
+
+    if(!foundTag) {
+        const createdTag = await db.Tag.create({
+            name: tag,
+        });
+
+        return createdTag;
+    }
+
+    return foundTag;
+}
