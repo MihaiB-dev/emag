@@ -3,7 +3,7 @@ import productType from './productType.js';
 import userType from './userType.js';
 import {GraphQLList} from 'graphql';
 
-const producerType = new GraphQLInputObjectType({
+const producerType = new GraphQLObjectType({
     name: 'Producer',
     fields: {
         user: { 
@@ -15,13 +15,13 @@ const producerType = new GraphQLInputObjectType({
             }
         },
 
-        products: { 
-                    type: new GraphQLList(productType),
-                    resolve: async (producer) => {
-                        const products = await producer.getProducts();
-                        return products;
-                    }
-                }
+        // products: { 
+        //             type: new GraphQLList(productType),
+        //             resolve: async (producer) => {
+        //                 const products = await producer.getProducts();
+        //                 return products;
+        //             }
+        //         }
     }
 });
 

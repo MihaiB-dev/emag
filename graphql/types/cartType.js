@@ -25,3 +25,5 @@ const cartType = new GraphQLObjectType({
         totalPrice: { type: GraphQLInt },
     }
 });
+
+export default cartType;

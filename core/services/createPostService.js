@@ -9,7 +9,7 @@ export const createPost = async (post, context) => {
      });
  
      const tags = await findOrCreateTags(post.tags);
- 
+
      await createdPost.addTags(tags);
 
      return createdPost;

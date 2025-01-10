@@ -2,7 +2,7 @@ import {GraphQLInputObjectType, GraphQLObjectType, GraphQLString} from 'graphql'
 import userType from './userType.js';
 import {GraphQLFloat} from 'graphql';
 
-const messageType = new GraphQLInputObjectType({
+const messageType = new GraphQLObjectType({ //GraphQLInputObjectType
     name: 'Message',
     fields: {
         title: { type: GraphQLString },

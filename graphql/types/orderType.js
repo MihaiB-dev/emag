@@ -1,10 +1,10 @@
-import {GraphQLObjectType, GraphQLInt, GraphQLString} from 'graphql'
+import {GraphQLInputObjectType, GraphQLObjectType, GraphQLInt, GraphQLString} from 'graphql'
 import {GraphQLList} from 'graphql';
 import userType from './userType.js';
 import productType from './productType.js';
 
 
-const order = new GraphQLObjectType({
+const orderType = new GraphQLObjectType({ //GraphQLInputObjectType
     name: 'Order',
     fields: {
         user: { 
@@ -29,3 +29,5 @@ const order = new GraphQLObjectType({
         orderDate: { type: GraphQLString },
     }
 });
+
+export default orderType;

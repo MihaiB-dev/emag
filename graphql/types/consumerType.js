@@ -6,13 +6,14 @@ import orderType from './orderType.js';
 import {GraphQLList} from 'graphql';
 
 
-const consumerType = new GraphQLInputObjectType({
+const consumerType = new GraphQLObjectType({
     name: 'Consumer',
     fields: {
         user: { 
             type: userType,
             resolve: async (consumer) => {
-                const user = await consumer.getuser();
+                console.log(consumer); 
+                const user = await consumer.getUser();
 
                 return user;
             }
