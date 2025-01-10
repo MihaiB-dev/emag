@@ -16,8 +16,11 @@ module.exports = {
       date: {type: Sequelize.DATE},
       userId: {type: Sequelize.INTEGER},
       productId: {type: Sequelize.INTEGER},
-      createdAt: {type: Sequelize.DATE},
-
+      createdAt: {allowNull: false,type: Sequelize.DATE},
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      }
     });
 
 
@@ -37,7 +40,7 @@ module.exports = {
       stock: {type: Sequelize.INTEGER},
       producerId: {type: Sequelize.INTEGER},
       tagId: {type: Sequelize.INTEGER},
-      createdAt: {type: Sequelize.DATE},
+      createdAt: {allowNull: false,type: Sequelize.DATE},
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -53,7 +56,11 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       userId: {type: Sequelize.INTEGER},
-      createdAt: {type: Sequelize.DATE},
+      createdAt: {allowNull: false,type: Sequelize.DATE},
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      }
     });
 
     // Cart
@@ -65,8 +72,13 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       userId: {type: Sequelize.INTEGER},
+      consumerId: {type: Sequelize.INTEGER},
       totalPrice: {type: Sequelize.INTEGER},
-      createdAt: {type: Sequelize.DATE},
+      createdAt: {allowNull: false,type: Sequelize.DATE},
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      }
     });
 
     // CartProduct
@@ -109,7 +121,11 @@ module.exports = {
       status: {type: Sequelize.STRING},
       comingDate: {type: Sequelize.DATE},
       orderDate: {type: Sequelize.DATE},
-      createdAt: {type: Sequelize.DATE},
+      createdAt: {allowNull: false,type: Sequelize.DATE},
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      }
     });
 
     // OrderProduct
@@ -147,7 +163,11 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       userId: {type: Sequelize.INTEGER},
-      createdAt: {type: Sequelize.DATE},
+      createdAt: {allowNull: false,type: Sequelize.DATE},
+      updatedAt: {
+        allowNull: false,
+        type: Sequelize.DATE
+      }
     });
 
 

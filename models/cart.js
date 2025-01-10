@@ -8,7 +8,8 @@ export default (sequelize, DataTypes) => {
     class Cart extends Model {
         static associate(models) {
         Cart.belongsTo(models.User, {
-            foreignKey: 'userId',
+            foreignKey: 'UserId',
+            as: 'User',
         });
         
         Cart.belongsToMany(models.Product, {
@@ -20,6 +21,7 @@ export default (sequelize, DataTypes) => {
     }
     Cart.init({
         userId: DataTypes.INTEGER,
+        consumerId: DataTypes.INTEGER,
         totalPrice: DataTypes.INTEGER,
     }, {
         sequelize,

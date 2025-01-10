@@ -7,12 +7,15 @@ export default (sequelize, DataTypes) => {
         static associate(models) {
             Consumer.belongsTo(models.User, {
                 foreignKey: 'userId',
+                as: 'user',
             });
             Consumer.hasOne(models.Cart, {
                 foreignKey: 'consumerId',
+                as: 'cart',
             });
             Consumer.hasMany(models.Order, {
                 foreignKey: 'consumerId',
+                as: 'orders',
             });
         }
     }

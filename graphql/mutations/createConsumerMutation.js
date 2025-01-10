@@ -5,15 +5,9 @@ import bcrypt from 'bcrypt';
 import { createConsumer } from '../../core/services/createConsumerService.js';
 
 const createConsumerMutationResolver = async (_, { user }, context) => {
-    const isAuthorized = !!context.user_id;
+    const createConsumer1 = await createConsumer(user, context);
 
-    if(!isAuthorized) {
-        return false;
-    }
-    
-    const createConsumer = await createConsumer(user, context);
-
-    return createConsumer;
+    return createConsumer1;
     
 }
 
