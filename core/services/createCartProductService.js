@@ -33,6 +33,7 @@ export const createCartProduct = async (productCode, quantity, context) => {
     let totalPrice = cart.totalPrice;
 
     if (cartProduct) {
+        console.log(cartProduct);
         cartProduct.quantity += quantity; 
         await cartProduct.save(); 
 
@@ -52,7 +53,7 @@ export const createCartProduct = async (productCode, quantity, context) => {
     cart.totalPrice = totalPrice;
     await cart.save(); 
 
-    const updatedCart = await cart.reload({ include: db.Product });
+    const updatedCart = await cart.reload({include: db.Product });
 
     console.log(updatedCart);
     return updatedCart;
