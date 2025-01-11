@@ -28,7 +28,7 @@
 
 # mutation {
 #   createProduct(Product: {
-#     name: "masinna de spalat"
+#     name: "masinna de spalat2"
 #     description: "o masina misto rau"
 #     picture: "random.png"
 #     price: 10
@@ -63,20 +63,75 @@
 #   }
 # }
 
-mutation {
-  createMessage(message: {
-    title: "haah"
-    description: "baa"
-    reviewStars: 2.5
-    productId: 2
-  }) {
-    title
-    description
-    reviewStars
-    user {
+# mutation {
+#   createMessage(message: {
+#     title: "haah"
+#     description: "baa"
+#     reviewStars: 2.5
+#     productId: 2
+#   }) {
+#     title
+#     description
+#     reviewStars
+#     user {
+#       id
+#       name
+#     }
+#   }
+# }
+
+# query {
+#   allProducts {
+#     id
+#     name
+#     description
+#     picture
+#     price
+#     productCode
+#     stock
+#     tag {
+#       id
+#       name
+#     }
+#   }
+# }
+
+# query {
+#   singleProduct(id: 3) { 
+#     id
+#     name
+#     description
+#     picture
+#     price
+#     productCode
+#     stock
+#     tag {
+#       id
+#       name
+#     }
+#   }
+# }
+
+
+query {
+  producersWithProducts {
+    producerType {
+      user {
+        id
+        name
+      }
+    }
+    products {
       id
       name
+      description
+      picture
+      price
+      productCode
+      stock
     }
   }
 }
+
+
 ```
