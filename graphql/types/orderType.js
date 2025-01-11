@@ -1,7 +1,7 @@
 import {GraphQLInputObjectType, GraphQLObjectType, GraphQLInt, GraphQLString} from 'graphql'
 import {GraphQLList} from 'graphql';
 import userType from './userType.js';
-import productType from './productType.js';
+import orderProductType from './orderProductType.js';
 
 
 const orderType = new GraphQLObjectType({ //GraphQLInputObjectType
@@ -15,12 +15,11 @@ const orderType = new GraphQLObjectType({ //GraphQLInputObjectType
                 return user;
             }
         },
-
-        products: { 
-                    type: new GraphQLList(productType),
+        orderProducts: { 
+                    type: new GraphQLList(orderProductType),
                     resolve: async (order) => {
-                        const products = await order.getProducts();
-                        return products;
+                        const orderProducts = await order.getOrderProducts();
+                        return orderProducts;
                     }
                 },
         totalPrice: { type: GraphQLInt },

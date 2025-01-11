@@ -1,6 +1,6 @@
 import { GraphQLObjectType, GraphQLInt } from 'graphql';
-import cartType from './cartType.js';  // Importă tipul pentru Cart
-import productType from './productType.js';  // Importă tipul pentru Product
+import cartType from './cartType.js';  
+import productType from './productType.js';  
 
 const cartProductType = new GraphQLObjectType({
   name: 'CartProduct',
@@ -20,7 +20,7 @@ const cartProductType = new GraphQLObjectType({
       resolve: (cartProduct) => cartProduct.quantity 
     },
 
-    // Răspuns cu informațiile detaliate despre coș
+  
     cart: { 
       type: cartType,
       resolve: async (cartProduct) => {
@@ -29,7 +29,7 @@ const cartProductType = new GraphQLObjectType({
       }
     },
 
-    // Răspuns cu informațiile detaliate despre produs
+  
     product: { 
       type: productType,
       resolve: async (cartProduct) => {
