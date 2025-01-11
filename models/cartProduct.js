@@ -16,7 +16,7 @@ export default (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'CartProduct',
-    tableName: 'Cart_Product',
+    tableName: 'CartProducts',
     timestamps: false,
   });
   return CartProduct;

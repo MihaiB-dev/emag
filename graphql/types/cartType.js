@@ -9,7 +9,7 @@ const cartType = new GraphQLObjectType({
         user: { 
             type: userType,
             resolve: async (cart) => {
-                const user = await cart.getuser();
+                const user = await cart.getUser();
 
                 return user;
             }
