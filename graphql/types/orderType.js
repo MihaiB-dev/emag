@@ -10,18 +10,18 @@ const orderType = new GraphQLObjectType({ //GraphQLInputObjectType
         user: { 
             type: userType,
             resolve: async (order) => {
-                const user = await order.getuser();
+                const user = await order.getUser();
 
                 return user;
             }
         },
-        orderProducts: { 
-                    type: new GraphQLList(orderProductType),
-                    resolve: async (order) => {
-                        const orderProducts = await order.getOrderProducts();
-                        return orderProducts;
-                    }
-                },
+        // orderProducts: { 
+        //             type: new GraphQLList(orderProductType),
+        //             resolve: async (order) => {
+        //                 const orderProducts = await order.getOrderProducts();
+        //                 return orderProducts;
+        //             }
+        //         },
         totalPrice: { type: GraphQLInt },
         status: { type: GraphQLString },
         comingDate: { type: GraphQLString },

@@ -19,9 +19,7 @@ const orderProductType = new GraphQLObjectType({
       type: GraphQLInt, 
       resolve: (orderProduct) => orderProduct.quantity 
     },
-
-
-    
+  
     product: { 
       type: productType,
       resolve: async (orderProduct) => {
