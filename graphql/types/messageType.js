@@ -8,8 +8,6 @@ const messageType = new GraphQLObjectType({ //GraphQLInputObjectType
         title: { type: GraphQLString },
         description: { type: GraphQLString },
         reviewStars: { type: GraphQLFloat },
-        date: { type: GraphQLString },
-        //add user
         user: { 
             type: userType,
             resolve: async (message) => {
