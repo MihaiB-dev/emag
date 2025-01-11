@@ -21,13 +21,13 @@ const orderProductType = new GraphQLObjectType({
     },
 
     
-    order: { 
-      type: orderType,
-      resolve: async (orderProduct) => {
-        const order = await orderProduct.getOrder();
-        return order;
-      }
-    },
+    // order: { 
+    //   type: orderType,
+    //   resolve: async (orderProduct) => {
+    //     const order = await orderProduct.getOrder();
+    //     return order;
+    //   }
+    // },
 
     
     product: { 
