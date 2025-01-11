@@ -3,3 +3,4 @@ db.test.sqlite
 .DS_Store
 node_modules
 .idea
+db.sqlite-journal

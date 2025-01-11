@@ -5,10 +5,10 @@ import { createPost } from '../../core/services/createPostService.js';
 const createPostMutationResolver = async (_, { post }, context) => {
     const isAuthorized = !!context.user_id
    
+    console.log(context);
     if(!isAuthorized) {
         return false;
     }
-    
     const createdPost = await createPost(post, context);
 
     return createdPost;

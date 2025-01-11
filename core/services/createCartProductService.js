@@ -4,18 +4,15 @@ import db from '../../models/index.js';
 export const createCartProduct = async (productCode, quantity, context) => {
 
     console.log(context);
-    const userCart = await db.Cart.findOne({
+    const cart = await db.Cart.findOne({
                 where: {
                     userId: context.user_id
 
                 }
             });
    
-    let cart;
-    if (userCart) {
-        cart = userCart;
-    } 
 
+    console.log(cart);
     const product = await db.Product.findOne({
         where: {
             productCode: productCode,
