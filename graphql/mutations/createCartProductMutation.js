@@ -4,9 +4,10 @@ import cartProductType from '../types/cartProductType.js';
 import cartType from '../types/cartType.js';
 import db from '../../models/index.js';
 import { createCartProduct } from '../../core/services/createCartProductService.js';  
+import { isConsumer } from '../../core/services/isConsumerService.js';
 
 const createCartProductMutationResolver = async (_, { input }, context) => {
-
+    const isConsumer2 = await isConsumer(context);
     const cart = await createCartProduct(input.productCode, input.quantity, context);  
     return cart;
 };
