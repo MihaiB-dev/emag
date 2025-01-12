@@ -4,8 +4,12 @@ import ProducerStatsType from '../types/stats/producerStatsType.js';
 import db from '../../models/index.js'; 
 import { isProducer } from '../../core/services/isProducerService.js';
 
-const producerStatsResolver = async (_, { producerId }) => {
+const producerStatsResolver = async (_, {}, context) => {
     const isProducer2 = await isProducer(context);
+    const producerId = await db.Producer.findOne({
+            where: { userId: context.user_id },
+        });
+      
     if (!producerId) {
       throw new Error('You must provide a producerId');
     }
@@ -84,9 +88,6 @@ const producerStatsResolver = async (_, { producerId }) => {
 
 const producerStatsQuery = {
   type: ProducerStatsType,
-  args: {
-    producerId: { type: GraphQLInt },
-  },
   resolve: producerStatsResolver,
 };
 
