@@ -2,6 +2,7 @@ import { GraphQLObjectType, GraphQLInt, GraphQLList } from 'graphql';
 import producerType from '../producerType.js';
 import ProductStatsType from './productStatsType.js';
 import db from '../../../models/index.js';  // <-- Adjust path to your models
+import { where } from 'sequelize';
 
 const ProducerStatsType = new GraphQLObjectType({
   name: 'ProducerStats',
@@ -9,7 +10,8 @@ const ProducerStatsType = new GraphQLObjectType({
     producer: {
       type: producerType,
       resolve: async (_) => {
-        return db.Producer.findByPk(_.producerId, {
+        return db.Producer.findOne({
+          where: { userId: _.producerId },
           include: [db.User],
         });
       },

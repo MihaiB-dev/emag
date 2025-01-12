@@ -2,15 +2,12 @@ import { GraphQLList, GraphQLInt, GraphQLString } from 'graphql';
 import { Op } from 'sequelize';
 import productType from '../types/productType.js'; // Use productType directly
 import db from '../../models/index.js';
-
+import { isProducer } from '../../core/services/isProducerService.js';
 // Resolver for filtering products by producer and tags
 const productFilterResolver = async (_, { tagString, tagStrings, maxStock }, context) => {
 
   const isProducer2 = await isProducer(context);
-  const producerId = await db.Producer.findOne({
-    where: { userId: context.user_id },
-  });
-
+  let producerId = context.user_id
   if (!producerId) {
     throw new Error('You must provide a producerId.');
   }

@@ -32,7 +32,7 @@ module.exports = {
           productCode: faker.string.alphanumeric(6).toUpperCase(),
           stock: faker.number.int({ min: 10000, max: 500000 }),
           tagId: tag.id, // Foreign key reference to the tag
-          producerId: producer.id, // Foreign key reference to the producer
+          producerId: producer.userId, // Foreign key reference to the producer
           createdAt: new Date(),
           updatedAt: new Date(),
         });

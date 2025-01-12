@@ -9,7 +9,7 @@ export const createOrder = async (context) => {
   
   const orderDate = new Date(); 
   const comingDate = orderDate;
-  const randomSeconds = Math.floor(Math.random() * 59) + 1;
+  const randomSeconds = Math.floor(Math.random() * 6) + 1; // max 7 secunde sa se faca comanda
   comingDate.setSeconds(orderDate.getSeconds() + randomSeconds);
   
   const order = await db.Order.create({
