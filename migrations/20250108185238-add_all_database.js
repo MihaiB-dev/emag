@@ -71,7 +71,6 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       userId: {type: Sequelize.INTEGER},
-      consumerId: {type: Sequelize.INTEGER},
       totalPrice: {type: Sequelize.INTEGER},
       createdAt: {allowNull: false,type: Sequelize.DATE},
       updatedAt: {

@@ -10,11 +10,11 @@ export default (sequelize, DataTypes) => {
                 as: 'user',
             });
             Consumer.hasOne(models.Cart, {
-                foreignKey: 'consumerId',
+                foreignKey: 'userId',
                 as: 'cart',
             });
             Consumer.hasMany(models.Order, {
-                foreignKey: 'consumerId',
+                foreignKey: 'userId',
                 as: 'orders',
             });
         }

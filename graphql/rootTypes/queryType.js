@@ -8,6 +8,7 @@ import allProductsQuery from '../queries/allProductsQuery.js';
 import singleProductQuery from '../queries/singleProductQuery.js';
 import producersWithProductsQuery from '../queries/producersWithProductsQuery.js';
 import salesByCategoryQuery from '../queries/SalesByCategory.js'; 
+import producerStatsQuery from '../queries/producerStatsQuery.js';
 
 const queryType = new GraphQLObjectType({
     name: "Query",
@@ -21,6 +22,7 @@ const queryType = new GraphQLObjectType({
         singleProduct: singleProductQuery,
         producersWithProducts: producersWithProductsQuery,
         salesByCategory: salesByCategoryQuery,
+        producerStats: producerStatsQuery,
     },
 });
 

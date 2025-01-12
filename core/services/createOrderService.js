@@ -8,10 +8,10 @@ export const createOrder = async (context) => {
   });
   
   const orderDate = new Date(); 
-  const randomDays = Math.floor(Math.random() * 10) + 1;
   const comingDate = orderDate;
-  comingDate.setDate(orderDate.getDate() + randomDays);
-
+  const randomSeconds = Math.floor(Math.random() * 59) + 1;
+  comingDate.setSeconds(orderDate.getSeconds() + randomSeconds);
+  
   const order = await db.Order.create({
     userId: context.user_id,
     totalPrice: cart.totalPrice, 

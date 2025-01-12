@@ -21,7 +21,6 @@ export default (sequelize, DataTypes) => {
     }
     Cart.init({
         userId: DataTypes.INTEGER,
-        consumerId: DataTypes.INTEGER,
         totalPrice: DataTypes.INTEGER,
         
     }, {
