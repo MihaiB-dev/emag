@@ -4,7 +4,13 @@ import productType from '../types/productType.js'; // Use productType directly
 import db from '../../models/index.js';
 
 // Resolver for filtering products by producer and tags
-const productFilterResolver = async (_, { producerId, tagString, tagStrings, maxStock }) => {
+const productFilterResolver = async (_, { tagString, tagStrings, maxStock }, context) => {
+
+  const isProducer2 = await isProducer(context);
+  const producerId = await db.Producer.findOne({
+    where: { userId: context.user_id },
+  });
+
   if (!producerId) {
     throw new Error('You must provide a producerId.');
   }
@@ -59,7 +65,6 @@ const productFilterResolver = async (_, { producerId, tagString, tagStrings, max
 const productFilterQuery = {
   type: new GraphQLList(productType),
   args: {
-    producerId: { type: GraphQLInt }, //required 
     tagString: { type: GraphQLString }, // Optional
     tagStrings: { type: new GraphQLList(GraphQLString) }, // Optional
     maxStock: { type: GraphQLInt }, // Optional
