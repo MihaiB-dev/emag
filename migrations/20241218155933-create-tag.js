@@ -21,32 +21,9 @@ module.exports = {
         type: Sequelize.DATE
       }
     });
-
-    await queryInterface.createTable('Post_Tag', {
-      PostId: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {
-          model: {
-            tableName: 'Posts',
-          },
-          key: 'id',
-        },
-      },
-      TagId: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {
-          model: {
-            tableName: 'Tags',
-          },
-          key: 'id',
-        }
-      }
-    });
+    
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable('Tags');
-    await queryInterface.dropTable('Post_Tag');
   }
 };
