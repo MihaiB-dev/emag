@@ -24,7 +24,12 @@ async function fetchProductCodes() {
       if (data.errors) {
         throw new Error(data.errors[0].message);
       }
-  
+
+    //console.log(data.data.allProducts);
+    //   const filteredProducts = data.data.allProducts.filter(
+    //     (product) => product.producer && product.producer.user.name === 'testProducer'
+    //   );
+    //   productCodes = filteredProducts.map((product) => product.productCode);
       productCodes = data.data.allProducts.map((product) => product.productCode);
       console.log(`Updated product codes, there are: ${productCodes.length} codes in the database`);
     } catch (error) {
@@ -184,7 +189,7 @@ async function simulateConsumer(consumer) {
 
   // Step 2: Perform random cart and order actions
   while(true) {
-    const waitTime = getRandomInt(1000, 5000);
+    const waitTime = getRandomInt(100, 400);
     console.log(`${consumer.username} waiting ${waitTime}ms before next action...`);
     await sleep(waitTime);
 
@@ -211,7 +216,7 @@ async function simulateConsumer(consumer) {
 
   const FAKE_CONSUMERS = [];
 
-  for (let i = 1; i <= 1; i++) {
+  for (let i = 1; i <= 50; i++) {
     FAKE_CONSUMERS.push({
       username: `testConsumer${i}`,
       password: '1234', // All consumers have the same password

@@ -17,6 +17,7 @@ const productType = new GraphQLObjectType({ //GraphQLInputObjectType
         producer: { 
             type: producerType,
             resolve: async (product) => {
+                console.log('product', product);
                 const user = await product.getProducer();
 
                 return user;

@@ -6,10 +6,9 @@ import { isProducer } from '../../core/services/isProducerService.js';
 
 const producerStatsResolver = async (_, {}, context) => {
     const isProducer2 = await isProducer(context);
-    const producerId = await db.Producer.findOne({
-            where: { userId: context.user_id },
-        });
-      
+    const producerId = context.user_id;
+
+    console.log(producerId);
     if (!producerId) {
       throw new Error('You must provide a producerId');
     }
@@ -47,7 +46,7 @@ const producerStatsResolver = async (_, {}, context) => {
     const producerProducts = await db.Product.findAll({
       where: { producerId },
     });
-
+    console.log(producerProducts)
     const productStatsMap = {};
     producerProducts.forEach((product) => {
       productStatsMap[product.id] = { // all the fields that are in the ProductStatsType
