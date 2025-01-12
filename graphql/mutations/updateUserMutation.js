@@ -3,18 +3,23 @@ import userInputType from '../types/userInputType.js';
 import userType from '../types/userType.js';
 import db from '../../models/index.js';
 
-const updateUserMutationResolver = async (_, args) => {
-    const id = args.id;
+const updateUserMutationResolver = async (_, args, context) => {
+    if (!context.user_id) {
+        throw new Error('You must be logged in to update your information.');
+    }
+
+    const userId = context.user_id; 
 
     const user = await db.User.findOne({
         where: {
-            id,
-        }
+            id: userId,
+        },
     });
 
-    if(!user) {
-        return false;
+    if (!user) {
+        throw new Error('User not found.');
     }
+
 
     const updatedUser = await user.update({
         ...args.user,
@@ -26,7 +31,6 @@ const updateUserMutationResolver = async (_, args) => {
 const updateUserMutation = {
     type: userType,
     args: {
-        id: {type: graphql.GraphQLInt},
         user: {type: userInputType},
     },
     resolve: updateUserMutationResolver,

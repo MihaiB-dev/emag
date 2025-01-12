@@ -1,21 +1,21 @@
 import {GraphQLBoolean, GraphQLInt} from 'graphql';
 import db from '../../models/index.js';
 
-const deleteUserResolver = async (_, args, context) => {
-    const isAuthorized = !!context.user_id
-   
-    if(!isAuthorized) {
-        return false;
+const deleteUserResolver = async (_, {}, context) => {
+    if (!context.user_id) {
+        throw new Error('You must be logged in to update your information.');
     }
-
+    
+    const userId = context.user_id; 
+    
     const user = await db.User.findOne({
         where: {
-            id: args.id,
-        }
-    })
-
+            id: userId,
+        },
+    });
+    
     if (!user) {
-        return false;
+       throw new Error('User not found.');
     }
 
     await user.destroy();
@@ -24,9 +24,6 @@ const deleteUserResolver = async (_, args, context) => {
 
 const deleteUserMutation = {
     type: GraphQLBoolean,
-    args: {
-        id: {type: GraphQLInt},
-    },
     resolve: deleteUserResolver,
 };
 

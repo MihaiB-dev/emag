@@ -6,7 +6,7 @@ export const isProducer = async (context) => {
     }
 
     const producer = await db.Producer.findOne({
-        where: { id: context.user_id },
+        where: { userId: context.user_id },
     });
 
     if (!producer) {
