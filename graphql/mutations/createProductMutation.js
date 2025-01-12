@@ -1,16 +1,12 @@
 import ProductType from '../types/productType.js';
 import ProductInputType from '../types/ProductInputType.js';
 import { createProduct } from '../../core/services/createProductService.js';
+import db from '../../models/index.js';
 
 const createProductMutationResolver = async (_, { Product }, context) => {
-    // const isAuthorized = !!context.user_id
-   
-    // if(!isAuthorized) {
-    //     return false;
-    // }
+
     
     const createdProduct = await createProduct(Product, context);
-
     return createdProduct;
 }
 

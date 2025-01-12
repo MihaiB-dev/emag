@@ -7,6 +7,7 @@ export default (sequelize, DataTypes) => {
         static associate(models) {
         Order.belongsTo(models.User, {
             foreignKey: 'userId',
+            as: 'user'
         });
         Order.belongsToMany(models.Product, {
             through: models.OrderProduct,
