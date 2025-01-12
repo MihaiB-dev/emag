@@ -10,6 +10,7 @@ import createProductMutation from '../mutations/createProductMutation.js';
 import createCartProductMutation from '../mutations/createCartProductMutation.js';
 import createMessageMutation from '../mutations/createMessageMutation.js';
 import createOrderMutation from '../mutations/createOrderMutation.js';
+import deleteMessageMutation from '../mutations/deleteMessageMutation.js';
 
 // Define the Query type
 const queryType = new graphql.GraphQLObjectType({
@@ -25,7 +26,9 @@ const queryType = new graphql.GraphQLObjectType({
         createProduct: createProductMutation,
         createCartProduct: createCartProductMutation,
         createOrder: createOrderMutation,
-        createMessage: createMessageMutation
+        createMessage: createMessageMutation,
+        deleteMessage: deleteMessageMutation,
+
     }
 });
 
