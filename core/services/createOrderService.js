@@ -6,10 +6,6 @@ export const createOrder = async (context) => {
   const cart = await db.Cart.findOne({
     where: { userId: context.user_id }
   });
-
-//   if (!cart || cart.CartProducts.length === 0) {
-//     throw new Error('Cart is empty or does not exist');
-//   }
   
   const orderDate = new Date(); 
   const randomDays = Math.floor(Math.random() * 10) + 1;
@@ -23,14 +19,24 @@ export const createOrder = async (context) => {
     comingDate: comingDate,
     orderDate: orderDate
   });
+  const {noProducts, notEnoughStock} = await createOrderProduct(cart.id, order.id);
 
-  const orderProduct = await createOrderProduct(cart.id, order.id);
+  if(noProducts === true)
+  {
+    await db.OrderProduct.destroy({
+      where: { orderId: order.id }
+    });
+    await order.destroy();
+    throw new Error('No products found in the cart');
+  }
 
-  //await order.addOrderProducts(orderProduct);
-
-  //const createdOrder = await db.Order.findOne({
-  //  where: { id: order.id }
-  //});
-
+  if(notEnoughStock === true)
+  {
+    await db.OrderProduct.destroy({
+      where: { orderId: order.id }
+    });
+    await order.destroy();
+    throw new Error('Not enough stock for product');
+  }
   return order;
 };
