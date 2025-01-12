@@ -2,12 +2,14 @@ import {GraphQLInt} from 'graphql';
 import userType from '../types/userType.js';
 import db from '../../models/index.js';
 
-const userQueryResolver = async (_, { id }) => {
+const userQueryResolver = async (_,{}, context) => {
+    if (!context.user_id) {
+        throw new Error('You are not authorized to perform this action.');
+    }
     const user = await db.User.findOne({
-        where: {
-            id,
-        }
+        where: { id: context.user_id },
     });
+    
 
     if(!user) {
         return null;
@@ -18,9 +20,6 @@ const userQueryResolver = async (_, { id }) => {
 
 const userQuery = {
     type: userType,
-    args: {
-        id: { type: GraphQLInt },
-    },
     resolve: userQueryResolver,
 };
 

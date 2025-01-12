@@ -1,8 +1,6 @@
 import { GraphQLObjectType } from 'graphql';
 import userQuery from '../queries/userQuery.js';
 import usersQuery from '../queries/usersQuery.js';
-import postQuery from '../queries/postQuery.js';
-import messageQuery from '../queries/messageQuery.js';
 import messagesQuery from '../queries/messagesQuery.js';
 import allProductsQuery from '../queries/allProductsQuery.js';
 import singleProductQuery from '../queries/singleProductQuery.js';
@@ -16,8 +14,6 @@ const queryType = new GraphQLObjectType({
     fields: {
         user: userQuery,
         users: usersQuery,
-        post: postQuery,
-        message: messageQuery,
         messages: messagesQuery,
         allProducts: allProductsQuery,
         singleProduct: singleProductQuery,

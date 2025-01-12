@@ -2,9 +2,10 @@ import { GraphQLInt } from 'graphql';
 import { Op } from 'sequelize';
 import ProducerStatsType from '../types/stats/producerStatsType.js';
 import db from '../../models/index.js'; 
-
+import { isProducer } from '../../core/services/isProducerService.js';
 
 const producerStatsResolver = async (_, { producerId }) => {
+    const isProducer2 = await isProducer(context);
     if (!producerId) {
       throw new Error('You must provide a producerId');
     }

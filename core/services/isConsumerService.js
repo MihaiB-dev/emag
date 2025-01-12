@@ -6,7 +6,7 @@ export const isConsumer = async (context) => {
     }
 
     const consumer = await db.Consumer.findOne({
-        where: { id: context.user_id },
+        where: { userId: context.user_id },
     });
 
     if (!consumer) {

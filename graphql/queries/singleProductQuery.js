@@ -1,12 +1,14 @@
-import { GraphQLInt, GraphQLObjectType } from 'graphql';
+import { GraphQLInt, GraphQLObjectType, GraphQLString } from 'graphql';
 import productType from '../types/productType.js';  
 import db from '../../models/index.js'; 
 import { isConsumer } from '../../core/services/isConsumerService.js';
 
-const singleProductResolver = async (_, { id },context) => {
+const singleProductResolver = async (_, { productCode },context) => {
   const isConsumer2 = await isConsumer(context);
   try {
-    const product = await db.Product.findByPk(id); 
+    const product = await db.Product.findOne({
+      where: { productCode: productCode }
+    }); 
     if (!product) {
       throw new Error('Product not found');
     }
@@ -19,7 +21,7 @@ const singleProductResolver = async (_, { id },context) => {
 const singleProductQuery = {
   type: productType, 
   args: {
-    id: { type: GraphQLInt },  
+    productCode: { type: GraphQLString },  
   },
   resolve: singleProductResolver,
 };
