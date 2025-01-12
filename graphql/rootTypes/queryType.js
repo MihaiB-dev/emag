@@ -5,7 +5,7 @@ import messagesQuery from '../queries/messagesQuery.js';
 import allProductsQuery from '../queries/allProductsQuery.js';
 import singleProductQuery from '../queries/singleProductQuery.js';
 import producersWithProductsQuery from '../queries/producersWithProductsQuery.js';
-import salesByCategoryQuery from '../queries/SalesByCategory.js'; 
+import salesByCategoryQuery from '../queries/salesByCategory.js'; 
 import producerStatsQuery from '../queries/producerStatsQuery.js';
 import productFilterQuery from '../queries/productFilterQuery.js';
 

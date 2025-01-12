@@ -30,7 +30,7 @@ module.exports = {
           picture: `${faker.internet.url()}/product/${faker.string.alphanumeric(10)}.jpg`,
           price: faker.number.int({ min: 10, max: 1000 }),
           productCode: faker.string.alphanumeric(6).toUpperCase(),
-          stock: faker.number.int({ min: 100, max: 500 }),
+          stock: faker.number.int({ min: 10000, max: 500000 }),
           tagId: tag.id, // Foreign key reference to the tag
           producerId: producer.id, // Foreign key reference to the producer
           createdAt: new Date(),
