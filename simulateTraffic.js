@@ -1,16 +1,48 @@
 import axios from 'axios';
 
 // Replace with your actual GraphQL endpoint
-const GRAPHQL_ENDPOINT = 'http://localhost:4000/graphql';
-
-// Fake consumer accounts for simulation
-const FAKE_CONSUMERS = [
-  { username: 'testConsumer', password: '1234' },
-  { username: 'testProducer', password: '1234' },
-];
+const GRAPHQL_ENDPOINT = 'http://localhost:3001/graphql';
 
 // Product codes for testing
-const EXAMPLE_PRODUCT_CODES = ['GR9WWV', 'XY7ABC', 'LM5DEF'];
+const REFRESH_INTERVAL = 10000;
+let productCodes = [];
+
+async function fetchProductCodes() {
+    const query = `
+      query {
+        allProducts {
+          productCode
+        }
+      }
+    `;
+  
+    try {
+      const token = await loginUser('testConsumer1', '1234');
+      const response = await axios.post(GRAPHQL_ENDPOINT, { query },{ headers: { Authorization: `Bearer ${token}` } });
+      const { data } = response;
+  
+      if (data.errors) {
+        throw new Error(data.errors[0].message);
+      }
+  
+      productCodes = data.data.allProducts.map((product) => product.productCode);
+      console.log(`Updated product codes, there are: ${productCodes.length} codes in the database`);
+    } catch (error) {
+      console.error('Error fetching product codes:', error.message);
+    }
+  }
+  
+  /**
+   * Initialize the product codes refresh process
+   */
+  function startProductCodeRefresh() {
+    // Fetch initially
+    fetchProductCodes();
+  
+    // Set interval to refresh periodically
+    setInterval(fetchProductCodes, REFRESH_INTERVAL);
+  }
+
 
 // Random helper functions
 const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
@@ -32,7 +64,6 @@ async function loginUser(username, password) {
   try {
     const response = await axios.post(GRAPHQL_ENDPOINT, { query, variables });
     const { data } = response;
-
     if (data.errors) {
       throw new Error(data.errors[0].message);
     }
@@ -65,6 +96,7 @@ async function addProductToCart(productCode, quantity, token) {
           stock
         }
         totalPrice
+        
       }
     }
   `;
@@ -86,7 +118,7 @@ async function addProductToCart(productCode, quantity, token) {
       throw new Error(data.errors[0].message);
     }
 
-    console.log('Cart updated:', data.data.createCartProduct);
+    //console.log('Cart updated:', data.data.createCartProduct);
     return data.data.createCartProduct;
   } catch (error) {
     console.error(`Error adding product ${productCode} to cart:`, error.message);
@@ -129,7 +161,7 @@ async function createOrder(token) {
       throw new Error(data.errors[0].message);
     }
 
-    console.log('Order created:', data.data.createOrder);
+    //console.log('Order created:', data.data.createOrder);
     return data.data.createOrder;
   } catch (error) {
     console.error('Error creating order:', error.message);
@@ -151,13 +183,13 @@ async function simulateConsumer(consumer) {
   }
 
   // Step 2: Perform random cart and order actions
-  for (let i = 0; i < 5; i++) {
+  while(true) {
     const waitTime = getRandomInt(1000, 5000);
     console.log(`${consumer.username} waiting ${waitTime}ms before next action...`);
     await sleep(waitTime);
 
     // Randomly pick a product code and quantity
-    const productCode = EXAMPLE_PRODUCT_CODES[getRandomInt(0, EXAMPLE_PRODUCT_CODES.length - 1)];
+    const productCode = productCodes[getRandomInt(0, productCodes.length - 1)];
     const quantity = getRandomInt(1, 3);
 
     // Add product to cart
@@ -165,9 +197,9 @@ async function simulateConsumer(consumer) {
 
     // Immediately place an order
     await createOrder(token);
+    console.log(`Finished simulation for consumer: ${consumer.username}`);
   }
 
-  console.log(`Finished simulation for consumer: ${consumer.username}`);
 }
 
 /**
@@ -175,6 +207,16 @@ async function simulateConsumer(consumer) {
  */
 (async function main() {
   console.log('Starting traffic simulation...');
+  startProductCodeRefresh();
+
+  const FAKE_CONSUMERS = [];
+
+  for (let i = 1; i <= 1; i++) {
+    FAKE_CONSUMERS.push({
+      username: `testConsumer${i}`,
+      password: '1234', // All consumers have the same password
+    });
+  }
 
   // Simulate each consumer's activity in parallel
   const promises = FAKE_CONSUMERS.map(simulateConsumer);
