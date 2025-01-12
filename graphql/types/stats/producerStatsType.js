@@ -1,7 +1,7 @@
 import { GraphQLObjectType, GraphQLInt, GraphQLList } from 'graphql';
 import producerType from '../producerType.js';
 import ProductStatsType from './productStatsType.js';
-import db from '../../../models/index.js';  // <-- Adjust path to your models
+import db from '../../../models/index.js';
 
 const ProducerStatsType = new GraphQLObjectType({
   name: 'ProducerStats',

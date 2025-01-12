@@ -3,6 +3,7 @@ import db from '../../models/index.js';
 import { isProducer } from '../../core/services/isProducerService.js';
 
 const deleteProductMutationResolver = async (_, { productCode }, context) => {
+
     try {
       await isProducer(context);
 
@@ -29,16 +30,21 @@ const deleteProductMutationResolver = async (_, { productCode }, context) => {
       const cartProducts = await db.CartProduct.findAll({
         where: { productId: product.id },
       });
-
+      console.log(cartProducts);
       if (cartProducts.length > 0) {
         for (const cartProduct of cartProducts) {
-          const cart = await cartProduct.getCart();
-          const productInCart = await cartProduct.getProduct();
+          const cart = await db.Cart.findOne({
+            where: { id: cartProduct.CartId },
+          });
+          console.log("ce e asta");
+          console.log(cart);
+          const productInCart = await db.Product.findOne({
+            where: { id: cartProduct.ProductId},
+          })
 
           const newTotalPrice = cart.totalPrice - (productInCart.price * cartProduct.quantity);
 
           await cart.update({ totalPrice: newTotalPrice });
-
           await cartProduct.destroy();
         }
       }

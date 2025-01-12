@@ -7,10 +7,11 @@ import db from '../../models/index.js';
 const productFilterResolver = async (_, { tagString, tagStrings, maxStock }, context) => {
 
   const isProducer2 = await isProducer(context);
-  const producerId = await db.Producer.findOne({
+  const producer = await db.Producer.findOne({
     where: { userId: context.user_id },
   });
 
+  const producerId = producer.id;
   if (!producerId) {
     throw new Error('You must provide a producerId.');
   }

@@ -1,7 +1,10 @@
 import { GraphQLBoolean, GraphQLInt } from 'graphql';
 import db from '../../models/index.js';
+import { isConsumer } from '../../core/services/isConsumerService.js';
 
 const deleteMessageMutationResolver = async (_, { id }, context) => {
+  
+  const isConsumer2 = await isConsumer(context);
   try {
     const message = await db.Message.findByPk(id);
 
