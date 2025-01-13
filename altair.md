@@ -97,7 +97,7 @@
 # }
 
 # query {
-#   singleProduct(id: 3) { 
+#   singleProduct(id: 50) { 
 #     id
 #     name
 #     description
@@ -113,25 +113,87 @@
 # }
 
 
-query {
-  producersWithProducts {
-    producerType {
-      user {
-        id
-        name
-      }
-    }
-    products {
-      id
-      name
-      description
-      picture
-      price
-      productCode
-      stock
-    }
-  }
-}
+# query {
+#   producersWithProducts {
+#     producerType {
+#       user {
+#         id
+#         name
+#       }
+#     }
+#     products {
+#       id
+#       name
+#       description
+#       picture
+#       price
+#       productCode
+#       stock
+#     }
+#   }
+# }
+
+# mutation {
+#   createProducer(user: {
+#     name: "producer",
+#     password: "1234"
+#   }) {
+#     user {
+#       id
+#       name
+#     }
+#   }
+# }
+
+# mutation {
+#   login(credentials: { username: "producer", password: "1234" }) 
+#   {
+#     token
+#   }
+# }
+
+# mutation {
+# createProduct(Product: {
+# name: "masinna de spalat3"
+# description: "o masina misto rau"
+# picture: "random.png"
+# price: 10
+# productCode: "Afg5hK55"
+# stock: 100
+# tag: "electrocasnice"
+# }) {
+# id
+# name
+# description
+# picture
+# price
+# productCode
+# stock
+# tag {
+# id
+# name
+# }
+# }
+# }
+
+
+# mutation {
+#   updateProductStock(productCode: "Afg5hK55", stock: 6) {
+#     id
+#     name
+#     description
+#     picture
+#     price
+#     productCode
+#     stock
+#   }
+# }
+
+
+# query {
+#   ratingProduct(productCode: "P3AU73")
+# }
+
 
 
 ```
