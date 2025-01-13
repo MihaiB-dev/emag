@@ -14,6 +14,7 @@ import deleteProductCartMutation from '../mutations/deleteProductCartMutation.js
 import deleteOrderMutation from '../mutations/deleteOrderMutation.js';
 import deleteConsumerMutation from '../mutations/deleteConsumerMutation.js';
 import deleteProducerMutation from '../mutations/deleteProducerMutation.js';
+import updateProductStockMutation from '../mutations/updateProductStockMutation.js';
 
 // Define the Query type
 const queryType = new graphql.GraphQLObjectType({
@@ -33,6 +34,7 @@ const queryType = new graphql.GraphQLObjectType({
         deleteOrder: deleteOrderMutation,
         deleteConsumer: deleteConsumerMutation,
         deleteProducer: deleteProducerMutation,
+        updateProductStock: updateProductStockMutation,
     }
 });
 
