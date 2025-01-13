@@ -11,6 +11,7 @@ import productFilterQuery from '../queries/productFilterQuery.js';
 import ratingProductQuery from '../queries/ratingProductQuery.js';
 import allCategoriesQuery from '../queries/allCategoriesQuery.js';
 import showProductsForProducerQuery from '../queries/showProductsForProducerQuery.js';
+import showOrderedProductsByRatingQuery from '../queries/showOrderedProductsByRatingQuery.js';
 
 const queryType = new GraphQLObjectType({
     name: "Query",
@@ -27,6 +28,7 @@ const queryType = new GraphQLObjectType({
         ratingProduct: ratingProductQuery,
         allCategories: allCategoriesQuery,
         showProductsForProducer: showProductsForProducerQuery,
+        showOrderedProductsByRating: showOrderedProductsByRatingQuery,
     },
 });
 
