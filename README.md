@@ -27,6 +27,7 @@ Producatorii:
 - Sa filtreze produsele dupa: tag, taguri sau numarul maxim de cantitate al unui produs
 - Sa vada toate produsele lor
 - Sa dea update la stocul unui produs
+- Sa vada media rating-urilor pentru un produs de al lor
 
 Pentru a intelege pe deplin legaturile din baza de date, va lasam aici o diagrama relationala:
 
