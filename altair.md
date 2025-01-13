@@ -194,6 +194,36 @@
 #   ratingProduct(productCode: "P3AU73")
 # }
 
+# query {
+#   showProductsForProducer {
+#     id
+#     name
+#     description
+#     picture
+#     price
+#     productCode
+#     stock
+#     tag {
+#       id
+#       name
+#     }
+#   }
+# }
+
+# query {
+#   showOrderedProductsByRating {
+#     id
+#     name
+#     description
+#     picture
+#     price
+#     productCode
+#     stock
+#     averageRating
+#   }
+# }
+
+
 
 
 ```
