@@ -10,19 +10,23 @@ Oricine:
 - Sa isi dea login pentru a primi un token JWT
 
 Consumatorii:
-- Adauga produse in cos
-- Adauga un review la un produs
-- Plaseaza o comanda
+- Adauga produse in cos sau sterg produse din cos
+- Adauga un review la un produs sau sterg un review deja existent
+- Plaseaza o comanda sau anuleaza o comanda deja existenta
 - Vad toate produsele
 - Vad toate mesajele
 - Pot vedea un singur produs
 - Vad fiecare producator cu produsele lui
+- Vad o categorie anume de produse
+- Vad toate categoriile cu toate produsele lor
 
 Producatorii:
 - Adauga produse in baza de date
 - Sterg produse
 - Sa vada statistici despre vanzari
 - Sa filtreze produsele dupa: tag, taguri sau numarul maxim de cantitate al unui produs
+- Sa vada toate produsele lor
+- Sa dea update la stocul unui produs
 
 Pentru a intelege pe deplin legaturile din baza de date, va lasam aici o diagrama relationala:
 
