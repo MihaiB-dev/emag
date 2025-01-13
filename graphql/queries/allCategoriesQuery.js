@@ -10,7 +10,7 @@ const CategoryWithProductCountType = new GraphQLObjectType({
   },
 });
 
-const allCategoriesWithProductCountResolver = async () => {
+const allCategoriesWithProductCountResolver = async (_,{},context) => {
   try {
     await isConsumer(context);
     const categories = await db.Tag.findAll({

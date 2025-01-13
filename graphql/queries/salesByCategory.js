@@ -2,7 +2,7 @@ import { GraphQLInt } from 'graphql';
 import { Op } from 'sequelize';
 import db from '../../models/index.js';
 
-const salesByCategoryResolver = async (_, { tagId }) => {
+const salesByCategoryResolver = async (_, { tagId }, context) => {
  
   console.log(`Fetching products for tagId: ${tagId}`);
   const products = await db.Product.findAll({

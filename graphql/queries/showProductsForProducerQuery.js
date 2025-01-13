@@ -3,7 +3,7 @@ import productType from '../types/productType.js';
 import db from '../../models/index.js';
 import { isProducer } from '../../core/services/isProducerService.js';
 
-const showProductsForProducerResolver = async (_, __, context) => {
+const showProductsForProducerResolver = async (_, {}, context) => {
     try {
         await isProducer(context);
         const producer = await db.Producer.findOne({

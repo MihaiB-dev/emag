@@ -12,6 +12,7 @@ import ratingProductQuery from '../queries/ratingProductQuery.js';
 import allCategoriesQuery from '../queries/allCategoriesQuery.js';
 import showProductsForProducerQuery from '../queries/showProductsForProducerQuery.js';
 import showOrderedProductsByRatingQuery from '../queries/showOrderedProductsByRatingQuery.js';
+import showCategoryQuery from '../queries/showCategoryQuery.js';
 
 const queryType = new GraphQLObjectType({
     name: "Query",
@@ -29,6 +30,7 @@ const queryType = new GraphQLObjectType({
         allCategories: allCategoriesQuery,
         showProductsForProducer: showProductsForProducerQuery,
         showOrderedProductsByRating: showOrderedProductsByRatingQuery,
+        showCategory: showCategoryQuery,
     },
 });
 

@@ -2,7 +2,7 @@ import { GraphQLFloat, GraphQLNonNull, GraphQLString } from 'graphql';
 import db from '../../models/index.js';
 import { isConsumer } from '../../core/services/isConsumerService.js';
 
-const ratingProductQueryResolver = async (_, { productCode }) => {
+const ratingProductQueryResolver = async (_, { productCode }, context) => {
   try {
     await isConsumer(context);
     const product = await db.Product.findOne({ where: { productCode } });
@@ -29,7 +29,6 @@ const ratingProductQueryResolver = async (_, { productCode }) => {
   }
 };
 
-// Define the GraphQL query
 const ratingProductQuery = {
   type: GraphQLFloat, 
   args: {
