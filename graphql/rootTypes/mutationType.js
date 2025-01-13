@@ -10,13 +10,16 @@ import createMessageMutation from '../mutations/createMessageMutation.js';
 import createOrderMutation from '../mutations/createOrderMutation.js';
 import deleteMessageMutation from '../mutations/deleteMessageMutation.js';
 import deleteProductMutation from '../mutations/deleteProductMutation.js';
+import deleteProductCartMutation from '../mutations/deleteProductCartMutation.js';
+import deleteOrderMutation from '../mutations/deleteOrderMutation.js';
+import deleteConsumerMutation from '../mutations/deleteConsumerMutation.js';
+import deleteProducerMutation from '../mutations/deleteProducerMutation.js';
 
 // Define the Query type
 const queryType = new graphql.GraphQLObjectType({
     name: "Mutation",
     fields: {
         updateUser: updateUserMutation,
-        deleteUser: deleteUserMutation,
         login: loginMutation,
         createConsumer: createConsumerMutation,
         createProducer: createProducerMutation,
@@ -26,7 +29,10 @@ const queryType = new graphql.GraphQLObjectType({
         createMessage: createMessageMutation,
         deleteMessage: deleteMessageMutation,
         deleteProduct: deleteProductMutation,
-
+        deleteProductCart: deleteProductCartMutation,
+        deleteOrder: deleteOrderMutation,
+        deleteConsumer: deleteConsumerMutation,
+        deleteProducer: deleteProducerMutation,
     }
 });
 

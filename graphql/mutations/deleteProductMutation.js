@@ -14,8 +14,10 @@ const deleteProductMutationResolver = async (_, { productCode }, context) => {
       if (!product) {
         throw new Error('Product not found');
       }
-
-      if (product.producerId !== context.user_id) {
+      const producer = await db.Producer.findOne({
+        where: {userId: context.user_id}
+      })
+      if (product.producerId !== producer.id) {
         throw new Error('You are not authorized to delete this product');
       }
 
@@ -30,14 +32,11 @@ const deleteProductMutationResolver = async (_, { productCode }, context) => {
       const cartProducts = await db.CartProduct.findAll({
         where: { productId: product.id },
       });
-      console.log(cartProducts);
       if (cartProducts.length > 0) {
         for (const cartProduct of cartProducts) {
           const cart = await db.Cart.findOne({
             where: { id: cartProduct.CartId },
           });
-          console.log("ce e asta");
-          console.log(cart);
           const productInCart = await db.Product.findOne({
             where: { id: cartProduct.ProductId},
           })
