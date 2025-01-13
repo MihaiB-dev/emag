@@ -1,9 +1,9 @@
 import { GraphQLList, GraphQLInt, GraphQLString } from 'graphql';
 import { Op } from 'sequelize';
-import productType from '../types/productType.js'; // Use productType directly
+import productType from '../types/productType.js'; 
 import db from '../../models/index.js';
 import { isProducer } from '../../core/services/isProducerService.js';
-// Resolver for filtering products by producer and tags
+
 const productFilterResolver = async (_, { tagString, tagStrings, maxStock }, context) => {
 
   const isProducer2 = await isProducer(context);
@@ -16,7 +16,6 @@ const productFilterResolver = async (_, { tagString, tagStrings, maxStock }, con
     throw new Error('You must provide a producerId.');
   }
 
-  // Build the `where` conditions dynamically
   const whereConditions = { producerId };
 
   // Step 1: Filter by tag strings
@@ -24,7 +23,7 @@ const productFilterResolver = async (_, { tagString, tagStrings, maxStock }, con
   if (tagString) {
     tagString = tagString.trim().toLowerCase().replace(/^\w/, (c) => c.toUpperCase());
     const tag = await db.Tag.findOne({
-      where: { name: tagString  }, // Case-insensitive search
+      where: { name: tagString  }, 
     });
 
     if (!tag) {

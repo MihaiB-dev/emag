@@ -6,11 +6,12 @@ import { isProducer } from '../../core/services/isProducerService.js';
 
 const producerStatsResolver = async (_, {}, context) => {
     const isProducer2 = await isProducer(context);
-    const producerId = context.user_id;
+    const producer = await db.Producer.findOne({ where: { userId: context.user_id } });
+    const producerId = producer.id;
 
     console.log(producerId);
     if (!producerId) {
-      throw new Error('You must provide a producerId');
+      throw new Error('You can t perform this action');
     }
 
     // ----------------------------------------------------------
