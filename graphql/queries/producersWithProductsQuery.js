@@ -10,7 +10,6 @@ const producersWithProductsResolver = async (_,{},context) => {
     const producersWithProducts = await Promise.all(
       producers.map(async (producer) => {
         const products = await db.Product.findAll({ where: { producerId: producer.id } });
-
         return {
           producerType: producer,
           products,

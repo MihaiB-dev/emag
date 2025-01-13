@@ -1,42 +1,42 @@
-// import { GraphQLList, GraphQLObjectType, GraphQLInt, GraphQLString } from 'graphql';
-// import db from '../../models/index.js'; 
-// import { isConsumer } from '../../core/services/isConsumerService.js';
+import { GraphQLList, GraphQLObjectType, GraphQLInt, GraphQLString } from 'graphql';
+import db from '../../models/index.js';
 
-// const tagWithProductCountType = new GraphQLObjectType({
-//   name: 'TagWithProductCount',
-//   fields: {
-//     tagName: { type: GraphQLString },
-//     productCount: { type: GraphQLInt },
-//   },
-// });
+const CategoryWithProductCountType = new GraphQLObjectType({
+  name: 'CategoryWithProductCount',
+  fields: {
+    name: { type: GraphQLString },
+    productCount: { type: GraphQLInt },
+  },
+});
 
-// const allTagsResolver = async (_, {}, context) => {
+const allCategoriesWithProductCountResolver = async () => {
+  try {
+    const categories = await db.Tag.findAll({
+      attributes: [
+        'name', 
+        [db.Sequelize.fn('COUNT', db.Sequelize.col('Products.id')), 'productCount'],
+      ],
+      include: [
+        {
+          model: db.Product,
+          attributes: [], 
+        },
+      ],
+      group: ['Tag.id'],
+    });
 
-//   await isConsumer(context);
+    return categories.map((category) => ({
+      name: category.name,
+      productCount: category.dataValues.productCount,
+    }));
+  } catch (error) {
+    throw new Error('Error fetching categories with product count: ' + error.message);
+  }
+};
 
-//   const tags = await db.Tag.findAll({
-//     attributes: [
-//       'name', 
-//       [db.Sequelize.fn('COUNT', db.Sequelize.col('Products.id')), 'productCount'], 
-//     ],
-//     include: [
-//       {
-//         model: db.Product,
-//         attributes: [], 
-//       },
-//     ],
-//     group: ['Tag.id'], 
-//   });
+const allCategoriesWithProductCountQuery = {
+  type: new GraphQLList(CategoryWithProductCountType),
+  resolve: allCategoriesWithProductCountResolver,
+};
 
-//   return tags.map(tag => ({
-//     tagName: tag.name,
-//     productCount: tag.dataValues.productCount,
-//   }));
-// };
-
-// const allCategoriesQuery = {
-//   type: new GraphQLList(tagWithProductCountType), 
-//   resolve: allTagsResolver,
-// };
-
-// export default allCategoriesQuery;
+export default allCategoriesWithProductCountQuery;

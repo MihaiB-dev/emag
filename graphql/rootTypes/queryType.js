@@ -9,7 +9,7 @@ import salesByCategoryQuery from '../queries/salesByCategory.js';
 import producerStatsQuery from '../queries/producerStatsQuery.js';
 import productFilterQuery from '../queries/productFilterQuery.js';
 import ratingProductQuery from '../queries/ratingProductQuery.js';
-
+import allCategoriesQuery from '../queries/allCategoriesQuery.js';
 const queryType = new GraphQLObjectType({
     name: "Query",
     fields: {
@@ -23,6 +23,7 @@ const queryType = new GraphQLObjectType({
         producerStats: producerStatsQuery,
         productFilter: productFilterQuery,
         ratingProduct: ratingProductQuery,
+        allCategories: allCategoriesQuery,
     },
 });
 
