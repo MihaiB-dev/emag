@@ -5,7 +5,7 @@ Acest API este facut cu node.js, express, cu GraphQl si sqlite ca baza de date.
 Aplicatia a fost creata pentru a gestiona un magazin online care are consumatori si producatori.
 
 Avem mai multe functii ce depind ce tipul de user.
-Orgine:
+Oricine:
 - Poate sa creeze un cont (consumator sau producator)
 - Sa isi dea login pentru a primi un token JWT
 
