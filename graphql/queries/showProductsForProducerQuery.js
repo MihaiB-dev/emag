@@ -1,9 +1,11 @@
 import { GraphQLList } from 'graphql';
 import productType from '../types/productType.js';
 import db from '../../models/index.js';
+import { isProducer } from '../../core/services/isProducerService.js';
 
 const showProductsForProducerResolver = async (_, __, context) => {
     try {
+        await isProducer(context);
         const producer = await db.Producer.findOne({
             where: { userId: context.user_id },
         });

@@ -1,5 +1,6 @@
 import { GraphQLList, GraphQLObjectType, GraphQLInt, GraphQLString } from 'graphql';
 import db from '../../models/index.js';
+import { isConsumer } from '../../core/services/isConsumerService.js';
 
 const CategoryWithProductCountType = new GraphQLObjectType({
   name: 'CategoryWithProductCount',
@@ -11,6 +12,7 @@ const CategoryWithProductCountType = new GraphQLObjectType({
 
 const allCategoriesWithProductCountResolver = async () => {
   try {
+    await isConsumer(context);
     const categories = await db.Tag.findAll({
       attributes: [
         'name', 
