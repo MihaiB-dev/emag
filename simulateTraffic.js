@@ -6,6 +6,13 @@ const GRAPHQL_ENDPOINT = 'http://localhost:3001/graphql';
 // Product codes for testing
 const REFRESH_INTERVAL = 10000;
 let productCodes = [];
+let orderCount = 0;
+
+const renderOrderCount = () => {
+  process.stdout.write('\x1Bc');
+  console.log('--- Real-Time Order Simulation ---\n');
+  console.log(`Total Orders Created: ${orderCount}`);
+};
 
 async function fetchProductCodes() {
     const query = `
@@ -165,8 +172,8 @@ async function createOrder(token) {
     if (data.errors) {
       throw new Error(data.errors[0].message);
     }
-
-    //console.log('Order created:', data.data.createOrder);
+    orderCount++;
+    renderOrderCount();
     return data.data.createOrder;
   } catch (error) {
     console.error('Error creating order:', error.message);
@@ -190,7 +197,7 @@ async function simulateConsumer(consumer) {
   // Step 2: Perform random cart and order actions
   while(true) {
     const waitTime = getRandomInt(100, 400);
-    console.log(`${consumer.username} waiting ${waitTime}ms before next action...`);
+    //console.log(`${consumer.username} waiting ${waitTime}ms before next action...`);
     await sleep(waitTime);
 
     // Randomly pick a product code and quantity
@@ -202,7 +209,7 @@ async function simulateConsumer(consumer) {
 
     // Immediately place an order
     await createOrder(token);
-    console.log(`Finished simulation for consumer: ${consumer.username}`);
+    //console.log(`Finished simulation for consumer: ${consumer.username}`);
   }
 
 }

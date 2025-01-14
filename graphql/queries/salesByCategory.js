@@ -19,7 +19,7 @@ const salesByCategoryResolver = async (_, { tagId }, context) => {
     return map;
   }, {});
 
-  console.log('Product Map:', productMap); 
+  //console.log('Product Map:', productMap); 
 
   const productIds = products.map((product) => product.id);
   console.log('Product IDs:', productIds); 
@@ -33,17 +33,18 @@ const salesByCategoryResolver = async (_, { tagId }, context) => {
       [db.Sequelize.fn('SUM', db.Sequelize.col('quantity')), 'totalQuantity'],
     ],
     group: ['productId'], 
+    raw:true,
   });
 
-  console.log('Sales Data:', salesData); 
+  //console.log('Sales Data:', salesData); 
 
   salesData.forEach((item, index) => {
-    console.log(`SalesData item ${index}:`, item.get()); 
+    console.log(`SalesData item ${index}:`, item.ProductId, item.totalQuantity); 
   });
 
   const totalSales = salesData.reduce((sum, item) => {
-    const productId = item.get('productId'); 
-    const totalQuantity = parseInt(item.get('totalQuantity'), 10) || 0;
+    const productId = item.ProductId; 
+    const totalQuantity = parseInt(item.totalQuantity, 10) || 0;
     
     const product = productMap[productId];
 
