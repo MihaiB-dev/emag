@@ -29,6 +29,7 @@ const ratingProductQueryResolver = async (_, { productCode }, context) => {
   }
 };
 
+// Define the GraphQL query
 const ratingProductQuery = {
   type: GraphQLFloat, 
   args: {
