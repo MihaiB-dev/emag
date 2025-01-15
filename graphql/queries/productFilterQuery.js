@@ -21,7 +21,7 @@ const productFilterResolver = async (_, { tagString, tagStrings, maxStock }, con
   // Step 1: Filter by tag strings
   //first letter is uppercase
   if (tagString) {
-    tagString = tagString.trim().toLowerCase().replace(/^\w/, (c) => c.toUpperCase());
+    tagString = tagString.trim().toLowerCase();
     const tag = await db.Tag.findOne({
       where: { name: tagString  }, 
     });
@@ -32,7 +32,7 @@ const productFilterResolver = async (_, { tagString, tagStrings, maxStock }, con
     whereConditions.tagId = tag.id;
   }
   if (tagStrings && tagStrings.length > 0) {
-    tagStrings = tagStrings.map((tagString) => tagString.trim().toLowerCase().replace(/^\w/, (c) => c.toUpperCase()));
+    tagStrings = tagStrings.map((tagString) => tagString.trim().toLowerCase());
     const tags = await db.Tag.findAll({
       where: { name: { [Op.in]: tagStrings } },
       attributes: ['id'],
